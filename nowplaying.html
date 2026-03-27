@@ -81,6 +81,7 @@
   #idle-time{font-size:2.8rem;font-weight:200;opacity:0.1;margin-top:1rem;font-variant-numeric:tabular-nums;font-family:monospace}
 </style>
 </head>
+<script src="config.js"></script>
 <body>
 
 <!-- Setup -->
@@ -555,6 +556,17 @@ setInterval(updateIdleTime,10000);
 //  INIT
 // ═══════════════════════════════════════════
 (function init(){
+  // config.js credentials take priority — skip login entirely
+  if(typeof SPOTIFY_CLIENT_ID!=='undefined'&&SPOTIFY_CLIENT_ID&&
+     typeof SPOTIFY_CLIENT_SECRET!=='undefined'&&SPOTIFY_CLIENT_SECRET&&
+     typeof SPOTIFY_REFRESH_TOKEN!=='undefined'&&SPOTIFY_REFRESH_TOKEN){
+    clientId=SPOTIFY_CLIENT_ID;
+    clientSecret=SPOTIFY_CLIENT_SECRET;
+    refreshToken=SPOTIFY_REFRESH_TOKEN;
+    startPlayer();
+    return;
+  }
+
   var params=new URLSearchParams(window.location.search);
   var code=params.get('code');
   var hash=window.location.hash.substring(1);

@@ -1,0 +1,3 @@
+[build]
+  command = "echo \"var SPOTIFY_CLIENT_ID='$SPOTIFY_CLIENT_ID'; var SPOTIFY_CLIENT_SECRET='$SPOTIFY_CLIENT_SECRET'; var SPOTIFY_REFRESH_TOKEN='$SPOTIFY_REFRESH_TOKEN';\" > config.js"
+  publish = "."
